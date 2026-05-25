@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3fbf3;
+  color: #1d3f1d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.natural-grid {
+  background-image:
+    radial-gradient(circle at top left, rgba(104, 183, 94, 0.22), transparent 28rem),
+    radial-gradient(circle at 85% 12%, rgba(232, 217, 189, 0.5), transparent 24rem),
+    linear-gradient(rgba(255, 255, 255, 0.62) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.62) 1px, transparent 1px);
+  background-size: auto, auto, 54px 54px, 54px 54px;
+}
+
+.leaf-card {
+  border: 1px solid rgba(152, 212, 143, 0.34);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(18px);
+}
+
+.cta-button {
+  @apply inline-flex items-center justify-center rounded-full bg-leaf-700 px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-leaf-800 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.secondary-button {
+  @apply inline-flex items-center justify-center rounded-full border border-leaf-300 bg-white/80 px-7 py-4 text-sm font-bold uppercase tracking-[0.18em] text-leaf-800 transition hover:-translate-y-0.5 hover:border-leaf-600;
+}
