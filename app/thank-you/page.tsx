@@ -4,11 +4,20 @@ import { formatPrice, product } from "@/lib/product";
 export default function ThankYouPage({
   searchParams
 }: {
-  searchParams: { product?: string; quantity?: string; totalPrice?: string; orderId?: string };
+  searchParams: Promise<{ product?: string; quantity?: string; totalPrice?: string; orderId?: string }>;
 }) {
-  const orderedProduct = searchParams.product || product.name;
-  const quantity = Number(searchParams.quantity || product.comboQuantity);
-  const totalPrice = Number(searchParams.totalPrice || product.comboPrice);
+  return <ThankYouContent searchParams={searchParams} />;
+}
+
+async function ThankYouContent({
+  searchParams
+}: {
+  searchParams: Promise<{ product?: string; quantity?: string; totalPrice?: string; orderId?: string }>;
+}) {
+  const params = await searchParams;
+  const orderedProduct = params.product || product.name;
+  const quantity = Number(params.quantity || product.comboQuantity);
+  const totalPrice = Number(params.totalPrice || product.comboPrice);
 
   return (
     <main className="natural-grid grid min-h-screen place-items-center px-5 py-10">
@@ -20,7 +29,7 @@ export default function ThankYouPage({
         </p>
 
         <div className="mt-8 rounded-3xl bg-white p-6 text-left shadow-sm">
-          {searchParams.orderId ? <Detail label="Order ID" value={searchParams.orderId} /> : null}
+          {params.orderId ? <Detail label="Order ID" value={params.orderId} /> : null}
           <Detail label="Product ordered" value={orderedProduct} />
           <Detail label="Quantity" value={quantity} />
           <Detail label="Total price" value={formatPrice(totalPrice)} />
